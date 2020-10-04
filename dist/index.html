@@ -11,19 +11,22 @@
 
   <div id="app">
     <h1>Qr code reader test</h1>
+
+    <p>
+      List of the current camera avaliable
+    </p>
+    <select name="cameras" class="js-cameras" id="cameras">
+      <option value="0">none</option>
+    </select>
     
     <div class="button js-scan">Scan for qrcode</div>
+    <div class="button js-scan-stop">Stop scanning</div>
 
     <div id="reader" class="reader"></div>
 
-    <div class="output">
-      
-    </div>
+    <div class="output js-output"></div>
 
   </div>
-
-  <script src="../node_modules/html5-qrcode/minified/html5-qrcode.min.js"></script>
-
 
 <script type="text/javascript" src="js/main.bundle.js"></script></body>
 

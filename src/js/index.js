@@ -8,6 +8,9 @@ class App{
 
         this.options = {
             $scanBtn: document.querySelector('.js-scan'),
+            $stopBtn: document.querySelector('.js-scan-stop'),
+            $select: document.querySelector('.js-cameras'),
+            $output: document.querySelector('.js-output'),
             cameraSettings: { 
                 facingMode: "environment" 
             },
@@ -16,20 +19,62 @@ class App{
                 qrbox: 250 
             }
         }
+
+        this.init();
     }
 
     init(){
+        this.getCameras();
         this.initEvents();
     }
 
-    initEvents(){
-        this.options.$scanBtn.addEventListener('click', () => {
-            this.html5QrCode.start(this.options.cameraSettings, this.options.config, this.qrCodeSuccessCallback);
-        })
+    /**
+     * This method will trigger user permissions
+     * 
+     * devices would be an array of objects of type:
+     * { id: "id", label: "label" }
+     */
+    getCameras(){
+        Html5Qrcode.getCameras().then(devices => {
+            console.log(devices);
+            if (devices && devices.length) {
+                devices.forEach(device => {
+                    let option = document.createElement("option");
+                    option.text = device.label;
+                    option.value = device.id;
+                    this.options.$select.appendChild(option);
+                });
+            }
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
-    qrCodeSuccessCallback() { 
-        console.log(message);
+    initEvents(){
+        this.options.$scanBtn.addEventListener('click', (e) => {
+            console.log('click');
+            this.html5QrCode.start(this.options.cameraSettings, this.options.cameraConfig, this.qrCodeSuccessCallback, this.qrCodeErrorCallback);
+        })
+
+        this.options.$stopBtn.addEventListener('click', (e) => this.stop(e) );
+    }
+
+    qrCodeSuccessCallback(message) { 
+        let output = `we found your code ${message}`;
+        this.options.$output.innerHTML = output;
+        alert(output);
+    }
+
+    qrCodeErrorCallback(message) { 
+        //console.log(message);
+    }
+
+    stop(e){
+        this.html5QrCode.stop().then(ignore => {
+            alert('Scanning stopped')
+        }).catch(err => {
+            alert('Error when stopping')
+        });
     }
 }
 
