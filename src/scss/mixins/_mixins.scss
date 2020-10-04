@@ -1,0 +1,15 @@
+/*-------------
+-  mixins css
+---------------*/
+
+@mixin inner {
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 5%;
+
+    @media screen and (min-width: 768px) {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+}
+

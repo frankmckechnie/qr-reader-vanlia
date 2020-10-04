@@ -1,0 +1,26 @@
+/*-------------
+-  Base css
+---------------*/
+
+@import url('https://fonts.googleapis.com/css?family=K2D&display=swap');
+
+html, body {
+    margin: 0;
+    height: 100%;
+    font-size: 100%;
+    font-family: sans-serif;
+    background:  $bg-color;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+canvas{
+    display: none;
+    width: 100%;
+
+    &.is-active{
+        display: block;
+    }
+}
