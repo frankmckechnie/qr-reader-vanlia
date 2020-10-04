@@ -1,5 +1,5 @@
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -9,7 +9,7 @@ module.exports = {
   entry: ['./src/js/index.js', './src/scss/master.scss'],
   output: {
     path: __dirname + '/dist/',
-    filename: "js/[name].bundle.js",
+    filename: 'js/[name].bundle.js',
   },
   module: {
     rules: [
@@ -73,4 +73,4 @@ module.exports = {
   ],
   watch: true,
   devtool: 'source-map'
-}
+};

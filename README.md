@@ -12,3 +12,8 @@ To clone this repo fork it or do a
  - `npm run dev` runs webpack, creates reloadable server
  - `npm run build` removes all files that are not needed in dist folder for prod
  - `npm run test` will rull any unit tests that are stored in the text folder
+
+## Fix linting issues ##
+
+ - `node node_modules\eslint\bin\eslint.js src\js\utils.js --fix`
+ - ` npm run lint ----fix `
