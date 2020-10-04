@@ -4,17 +4,25 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8" />
-  <title>Base template | webpack</title>
+  <title>Qr code reader</title>
 <link rel="shortcut icon" href="favicon.ico"><link href="/css/main.css" rel="stylesheet"></head>
 
 <body>
 
   <div id="app">
-    <h1>Welcome to franks wekpack template</h1>
-    <div class="button">Do somthing</div>
+    <h1>Qr code reader test</h1>
+    
+    <div class="button js-scan">Scan for qrcode</div>
 
-    <div id="result"></div>
+    <div id="reader" class="reader"></div>
+
+    <div class="output">
+      
+    </div>
+
   </div>
+
+  <script src="../node_modules/html5-qrcode/minified/html5-qrcode.min.js"></script>
 
 
 <script type="text/javascript" src="js/main.bundle.js"></script></body>
