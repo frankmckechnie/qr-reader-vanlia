@@ -1,6 +1,6 @@
 node_modules
 .ds_store
-dist/css/main.css.map
-dist/js/main.bundle.js
-dist/js/main.bundle.js.map
-dist/css/main.css
+# dist/css/main.css.map
+# dist/js/main.bundle.js
+# dist/js/main.bundle.js.map
+# dist/css/main.css
