@@ -15,12 +15,3 @@ html, body {
 *{
     box-sizing: border-box;
 }
-
-canvas{
-    display: none;
-    width: 100%;
-
-    &.is-active{
-        display: block;
-    }
-}

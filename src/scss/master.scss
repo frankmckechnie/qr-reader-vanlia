@@ -5,9 +5,11 @@
 @import './base/variables';
 @import './mixins/mixins';
 @import './base/base';
-@import './components/game';
+
+/**
+* Components
+*/
 @import './components/button';
-@import './components/text';
 
 
 
