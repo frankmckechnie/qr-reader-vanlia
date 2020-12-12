@@ -26,8 +26,6 @@ class App{
         console.log(this.options);
 
         this.init();
-
-        this.makeRequest();
     }
 
     init(){
@@ -70,14 +68,9 @@ class App{
     }
 
     qrCodeSuccessCallback(message) { 
-        let output = `we found your code ${message}`;
+        let output = `<p>We found your code ${message}</p>`;
         this.options.$output.innerHTML = output;
-
-        var go = prompt(`If output: ${message} is link would you like to go`, message);
-
-        if (go != null) {
-            window.location.href = message;
-        }
+        this.makeRequest(message);
     }
 
     qrCodeErrorCallback(message) { 
@@ -92,13 +85,15 @@ class App{
         });
     }
 
-    makeRequest(){
-        fetch('https://7dwxc.sse.codesandbox.io/qr-scanner', {
+    makeRequest(url){
+        fetch(url, {
             method: 'post',
         }).then(function(response) {
             return response.json();
         }).then(function(data) {
-            console.log(data);
+            console.log(data.msg);
+            this.options.$output.innerHTML = this.options.$output.innerHTML + '<p>Response data: '+ data.msg +'</p>';
+
         });
     }
 }
