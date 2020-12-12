@@ -21,6 +21,8 @@ class App{
         }
 
         this.init();
+
+        this.makeRequest();
     }
 
     init(){
@@ -74,6 +76,16 @@ class App{
             alert('Scanning stopped')
         }).catch(err => {
             alert('Error when stopping')
+        });
+    }
+
+    makeRequest(){
+        fetch('https://7dwxc.sse.codesandbox.io/qr-scanner', {
+            method: 'post',
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            console.log(data);
         });
     }
 }

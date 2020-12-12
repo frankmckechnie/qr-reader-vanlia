@@ -5181,6 +5181,7 @@ var App = /*#__PURE__*/function () {
       }
     };
     this.init();
+    this.makeRequest();
   }
 
   _createClass(App, [{
@@ -5240,7 +5241,8 @@ var App = /*#__PURE__*/function () {
     }
   }, {
     key: "qrCodeErrorCallback",
-    value: function qrCodeErrorCallback(message) {//console.log(message);
+    value: function qrCodeErrorCallback(message) {
+      console.log(message);
     }
   }, {
     key: "stop",
@@ -5249,6 +5251,17 @@ var App = /*#__PURE__*/function () {
         alert('Scanning stopped');
       })["catch"](function (err) {
         alert('Error when stopping');
+      });
+    }
+  }, {
+    key: "makeRequest",
+    value: function makeRequest() {
+      fetch('https://7dwxc.sse.codesandbox.io/qr-scanner', {
+        method: 'post'
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        console.log(data);
       });
     }
   }]);
