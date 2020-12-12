@@ -5325,6 +5325,7 @@ var App = /*#__PURE__*/function () {
         qrbox: 250
       }
     };
+    console.log(this.options);
     this.init();
     this.makeRequest();
   }
@@ -5371,7 +5372,9 @@ var App = /*#__PURE__*/function () {
       this.options.$scanBtn.addEventListener('click', function (e) {
         console.log('click');
 
-        _this2.html5QrCode.start(_this2.options.cameraSettings, _this2.options.cameraConfig, _this2.qrCodeSuccessCallback, _this2.qrCodeErrorCallback);
+        _this2.html5QrCode.start(_this2.options.cameraSettings, _this2.options.cameraConfig, function (messsage) {
+          return _this2.qrCodeSuccessCallback(messsage);
+        }, _this2.qrCodeErrorCallback);
       });
       this.options.$stopBtn.addEventListener('click', function (e) {
         return _this2.stop(e);
@@ -5382,12 +5385,15 @@ var App = /*#__PURE__*/function () {
     value: function qrCodeSuccessCallback(message) {
       var output = "we found your code ".concat(message);
       this.options.$output.innerHTML = output;
-      alert(output);
+      var go = prompt("If output: ".concat(message, " is link would you like to go"), message);
+
+      if (go != null) {
+        window.location.href = message;
+      }
     }
   }, {
     key: "qrCodeErrorCallback",
-    value: function qrCodeErrorCallback(message) {
-      console.log(message);
+    value: function qrCodeErrorCallback(message) {//  console.log(message);
     }
   }, {
     key: "stop",
@@ -5443,7 +5449,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64229" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65082" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

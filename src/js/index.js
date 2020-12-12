@@ -23,6 +23,8 @@ class App{
             }
         }
 
+        console.log(this.options);
+
         this.init();
 
         this.makeRequest();
@@ -58,7 +60,10 @@ class App{
     initEvents(){
         this.options.$scanBtn.addEventListener('click', (e) => {
             console.log('click');
-            this.html5QrCode.start(this.options.cameraSettings, this.options.cameraConfig, this.qrCodeSuccessCallback, this.qrCodeErrorCallback);
+            this.html5QrCode.start(this.options.cameraSettings, this.options.cameraConfig, 
+                (messsage) => this.qrCodeSuccessCallback(messsage), 
+                this.qrCodeErrorCallback
+            );
         })
 
         this.options.$stopBtn.addEventListener('click', (e) => this.stop(e) );
@@ -67,11 +72,16 @@ class App{
     qrCodeSuccessCallback(message) { 
         let output = `we found your code ${message}`;
         this.options.$output.innerHTML = output;
-        alert(output);
+
+        var go = prompt(`If output: ${message} is link would you like to go`, message);
+
+        if (go != null) {
+            window.location.href = message;
+        }
     }
 
     qrCodeErrorCallback(message) { 
-        console.log(message);
+      //  console.log(message);
     }
 
     stop(e){
