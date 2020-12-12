@@ -66,7 +66,7 @@ class App{
     }
 
     qrCodeErrorCallback(message) { 
-        //console.log(message);
+        console.log(message);
     }
 
     stop(e){
