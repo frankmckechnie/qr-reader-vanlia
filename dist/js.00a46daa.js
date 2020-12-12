@@ -5327,7 +5327,6 @@ var App = /*#__PURE__*/function () {
     };
     console.log(this.options);
     this.init();
-    this.makeRequest();
   }
 
   _createClass(App, [{
@@ -5383,13 +5382,9 @@ var App = /*#__PURE__*/function () {
   }, {
     key: "qrCodeSuccessCallback",
     value: function qrCodeSuccessCallback(message) {
-      var output = "we found your code ".concat(message);
+      var output = "<p>We found your code ".concat(message, "</p>");
       this.options.$output.innerHTML = output;
-      var go = prompt("If output: ".concat(message, " is link would you like to go"), message);
-
-      if (go != null) {
-        window.location.href = message;
-      }
+      this.makeRequest(message);
     }
   }, {
     key: "qrCodeErrorCallback",
@@ -5406,13 +5401,16 @@ var App = /*#__PURE__*/function () {
     }
   }, {
     key: "makeRequest",
-    value: function makeRequest() {
-      fetch('https://7dwxc.sse.codesandbox.io/qr-scanner', {
+    value: function makeRequest(url) {
+      var _this3 = this;
+
+      fetch(url, {
         method: 'post'
       }).then(function (response) {
         return response.json();
       }).then(function (data) {
-        console.log(data);
+        console.log(data.msg);
+        _this3.options.$output.innerHTML = _this3.options.$output.innerHTML + '<p>Response data: ' + data.msg + '</p>';
       });
     }
   }]);
@@ -5449,7 +5447,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65082" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49819" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

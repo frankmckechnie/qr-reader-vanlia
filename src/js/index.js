@@ -88,12 +88,11 @@ class App{
     makeRequest(url){
         fetch(url, {
             method: 'post',
-        }).then(function(response) {
+        }).then((response) => {
             return response.json();
-        }).then(function(data) {
+        }).then((data) => {
             console.log(data.msg);
             this.options.$output.innerHTML = this.options.$output.innerHTML + '<p>Response data: '+ data.msg +'</p>';
-
         });
     }
 }
