@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/logo192.png" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta charset="UTF-8" />
+    <title>Qr code reader</title>
+  </head>
+
+  <body>
+    <noscript>
+      <div>Oops! Javascript required here! Allow it and try again!</div>
+    </noscript>
+
+    <div id="app">
+      <h1>Qr code reader test</h1>
+
+      <p>List of the current camera avaliable</p>
+      <select name="cameras" class="js-cameras" id="cameras">
+        <option value="0">none</option>
+      </select>
+
+      <div class="button js-scan">Scan for qrcode</div>
+      <div class="button js-scan-stop">Stop scanning</div>
+
+      <div id="reader" class="reader"></div>
+
+      <div class="output js-output"></div>
+
+      <button id="butInstall">
+		    Install pwa
+	    </button>
+    </div>
+
+    <script src="js/index.js"></script>
+
+    <script>
+      const sw = "service-worker.js"; // it is needed because parcel will not recognize this as a file and not precess in its manner
+
+      navigator.serviceWorker
+        .register(sw)
+        .then((registration) => {
+          registration.onupdatefound = () => {
+            const installingWorker = registration.installing;
+            if (installingWorker == null) {
+              return;
+            }
+            installingWorker.onstatechange = () => {
+              if (installingWorker.state === "installed") {
+                if (navigator.serviceWorker.controller) {
+                  // At this point, the updated precached content has been fetched,
+                  // but the previous service worker will still serve the older
+                  // content until all client tabs are closed.
+                  console.log(
+                    "New content is available and will be used when all " +
+                      "tabs for this page are closed. See https://bit.ly/CRA-PWA."
+                  );
+                } else {
+                  // At this point, everything has been precached.
+                  // It's the perfect time to display a
+                  // "Content is cached for offline use." message.
+                  console.log("Content is cached for offline use.");
+                }
+              }
+            };
+          };
+        })
+        .catch((error) => {
+          console.error("Error during service worker registration:", error);
+        });
+    </script>
+  </body>
+</html>

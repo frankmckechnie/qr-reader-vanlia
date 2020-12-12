@@ -1,5 +1,8 @@
+import '../scss/master.scss';
+
 import Html5Qrcode from './html5-qrcode/html5-qrcode';
 import Html5QrcodeScanner from './html5-qrcode/html5-qrcode-scanner';
+import './install';
 
 class App{
 
